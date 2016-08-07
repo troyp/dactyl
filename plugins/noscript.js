@@ -28,7 +28,7 @@ function getSites() {
     const blockUntrusted = global && ns.alwaysBlockUntrustedContent;
 
     let res = [];
-    for (let site of array.iterValues(Array.concat(sites.topSite, sites))) {
+    for (let site of array.iterValues([].concat(sites.topSite, sites))) {
         let ary = [];
 
         let untrusted    = groups.untrusted.matches(site);
@@ -314,7 +314,7 @@ group.options.add(["script"],
         description: "The list of allowed objects",
         get set() { return new RealSet(array.flatten(
             [for (wListObj of iter(services.noscript.objectWhitelist))
-                Array.concat(wListObj[1]).map(function (v) { return v + "@" + this; }, wListObj[0])])) },
+                [].concat(wListObj[1]).map(function (v) { return v + "@" + this; }, wListObj[0])])) },
         action: function (add, patterns) {
             for (let pattern of values(patterns)) {
                 let [mime, site] = util.split(pattern, /@/, 2);
